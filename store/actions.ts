@@ -19,6 +19,7 @@ export const createUser = (data: any) => async (dispatch: any) => {
         dispatch({
             type: "CREATE_USER",
             payload: data,
+            loading: true,
             alert: "success",
             message: res.data.message,
         })
@@ -27,6 +28,7 @@ export const createUser = (data: any) => async (dispatch: any) => {
         dispatch({
             type: "CREATE_USER",
             payload: data,
+            loading: false,
             alert: "error",
             message: err.response.data.message,
         })
@@ -40,6 +42,7 @@ export const updateUser = (data: any, id: string) => async (dispatch: any) => {
         dispatch({
             type: "UPDATE_USER",
             payload: data,
+            loading: true,
             alert: "success",
             message: res.data.message,
         })
@@ -48,6 +51,7 @@ export const updateUser = (data: any, id: string) => async (dispatch: any) => {
         dispatch({
             type: "UPDATE_USER",
             payload: data,
+            loading: false,
             alert: "error",
             message: err.response.data.message,
         })
@@ -61,6 +65,7 @@ export const deleteUser = (id: string) => async (dispatch: any) => {
         dispatch({
             type: "DELETE_USER",
             payload: id,
+            loading: true,
             alert: "success",
             message: res.data.message,
         })
@@ -69,6 +74,7 @@ export const deleteUser = (id: string) => async (dispatch: any) => {
         dispatch({
             type: "DELETE_USER",
             payload: id,
+            loading: false,
             alert: "error",
             message: err.response.data.message,
         })

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Alert } from '@mui/material';
+import { Alert, LinearProgress } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -81,7 +81,7 @@ class MainPage extends React.Component<any, any> {
   }
 
   render() {
-    const { users, alert, message, isModalOpen } = this.props;
+    const { users, alert, message, isLoading, isModalOpen } = this.props;
 
     return (
       <AppTemplate {...this.props}>
@@ -99,7 +99,10 @@ class MainPage extends React.Component<any, any> {
         </Grid>
         {alert != null && !isModalOpen ? (
           <Alert severity={alert}>{message}</Alert>
-        ) : <></>}
+        ) : null}
+        {isLoading ? (
+          <LinearProgress />
+        ) : null}
         <List>
           {users.map((user: any, idx: any) => {
             return (
@@ -147,7 +150,7 @@ class MainPage extends React.Component<any, any> {
         >
           <DialogTitle>Entry Contact</DialogTitle>
           <DialogContent>
-            {alert != null && isModalOpen ? (
+            {alert != null ? (
               <Alert severity={alert}>{message}</Alert>
             ) : <></>}
             <TextField type="text" margin="dense" label="Name *" fullWidth variant="standard"
@@ -175,6 +178,7 @@ const mapStateToProps = (state: any) => {
     users: state.user.userList,
     alert: state.user.alert,
     message: state.user.message,
+    isLoading: state.user.isLoading,
     isModalOpen: state.user.isModalOpen
   };
 };
