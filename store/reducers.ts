@@ -74,7 +74,6 @@ const userReducer = (state = initialState, action: any) => {
       return {
         ...state,
         isModalOpen: action.payload,
-        alert: action.alert,
       }
     case "AUTH_REGISTER":
       return {

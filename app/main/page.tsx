@@ -44,6 +44,7 @@ class MainPage extends React.Component<any, any> {
   btnOpen(data: any) {
     if (data.isEdit) {
       this.setState(data);
+      this.props.actions.setAlert(null);
       this.props.actions.setModalOpen(true);
       return;
     }
@@ -54,6 +55,7 @@ class MainPage extends React.Component<any, any> {
       return;
     }
     this.setState({ id: '', name: '', email: '', phone: '' });
+    this.props.actions.setAlert(null);
     this.props.actions.setModalOpen(true);
   }
 
@@ -78,6 +80,7 @@ class MainPage extends React.Component<any, any> {
   btnCancel = () => {
     this.props.actions.fetchUsers();
     this.props.actions.setModalOpen(false);
+    if (this.props.alert == 'error') this.props.actions.setAlert(null);
   }
 
   render() {
@@ -150,7 +153,7 @@ class MainPage extends React.Component<any, any> {
         >
           <DialogTitle>Entry Contact</DialogTitle>
           <DialogContent>
-            {alert != null ? (
+            {alert != null && isModalOpen ? (
               <Alert severity={alert}>{message}</Alert>
             ) : <></>}
             <TextField type="text" margin="dense" label="Name *" fullWidth variant="standard"

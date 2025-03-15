@@ -102,7 +102,6 @@ export const setModalOpen = (isOpen: boolean) => {
         return {
             type: "MODAL_OPEN",
             payload: isOpen,
-            alert: null,
         }
     }
     return {
