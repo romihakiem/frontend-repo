@@ -8,7 +8,7 @@ export const fetchUsers = () => async (dispatch: any) => {
             payload: res.data,
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         return Promise.reject(err)
     }
 }
@@ -23,7 +23,7 @@ export const createUser = (data: any) => async (dispatch: any) => {
             message: res.data.message,
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         dispatch({
             type: "CREATE_USER",
             payload: data,
@@ -44,7 +44,7 @@ export const updateUser = (data: any, id: string) => async (dispatch: any) => {
             message: res.data.message,
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         dispatch({
             type: "UPDATE_USER",
             payload: data,
@@ -65,7 +65,7 @@ export const deleteUser = (id: string) => async (dispatch: any) => {
             message: res.data.message,
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         dispatch({
             type: "DELETE_USER",
             payload: id,
@@ -115,12 +115,12 @@ export const authRegister = (data: any) => async (dispatch: any) => {
             message: "Successfully registered",
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         dispatch({
             type: "AUTH_REGISTER",
             payload: data,
             alert: "error",
-            message: err.response.data.message,
+            message: "Failed to register",
         })
         return Promise.reject(err)
     }
@@ -136,7 +136,7 @@ export const authLogin = (data: any) => async (dispatch: any) => {
             message: "Successfully logged in",
         })
         return Promise.resolve(res)
-    } catch (err) {
+    } catch (err: any) {
         dispatch({
             type: "AUTH_LOGIN",
             payload: data,

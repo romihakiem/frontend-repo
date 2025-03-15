@@ -25,9 +25,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import AppTemplate from '@/components/templates/template';
 import * as Actions from '@/store/actions';
 
-class MainPage extends React.Component {
-  constructor(props: {}, context: any) {
-    super(props, context);
+class MainPage extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
 
     this.state = {};
 
@@ -41,7 +41,7 @@ class MainPage extends React.Component {
     this.props.actions.fetchUsers();
   }
 
-  btnOpen(data) {
+  btnOpen(data: any) {
     if (data.isEdit) {
       this.setState(data);
       this.props.actions.setModalOpen(true);
@@ -101,7 +101,7 @@ class MainPage extends React.Component {
           <Alert severity={alert}>{message}</Alert>
         ) : <></>}
         <List>
-          {users.map((user, idx) => {
+          {users.map((user: any, idx: any) => {
             return (
               <ListItem
                 key={idx}
